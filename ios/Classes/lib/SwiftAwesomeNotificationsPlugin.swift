@@ -65,8 +65,10 @@ public class SwiftAwesomeNotificationsPlugin: NSObject, FlutterPlugin, UNUserNot
         return true
     }
     
-    private func enableFirebase(){
-        let firebaseConfigPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+    private func enableFirebase(_ application: UIApplication){
+        guard let firebaseConfigPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") else {
+            return
+        }
         let fileManager = FileManager.default
         
         if fileManager.fileExists(atPath: firebaseConfigPath) {
